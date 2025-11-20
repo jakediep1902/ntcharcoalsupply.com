@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- English comments: Simple test page for deployment check -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ntcharcoalsupply - Deployment Test</title>
+
+  <!-- Simple embedded styles -->
+  <style>
+    /* English comment: clean centered layout */
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      display: flex;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      background: linear-gradient(180deg,#f7fafc,#e6eef6);
+      color: #0f172a;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 6px 24px rgba(16,24,40,0.08);
+      max-width: 720px;
+      width: 90%;
+      text-align: center;
+    }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    p { margin: 6px 0; color: #334155; }
+    code { background:#f1f5f9; padding:4px 8px; border-radius:6px; }
+    .ok { color: #047857; font-weight:600; }
+    .warn { color: #b45309; font-weight:600; }
+    footer { margin-top: 14px; font-size: 12px; color:#64748b; }
+  </style>
+</head>
+<body>
+  <div class="card" role="main">
+    <h1>ntcharcoalsupply — Deployment Test</h1>
+    <p>This is a simple static test page to verify your deployment to the VPS.</p>
+
+    <!-- English comment: show a quick status and timestamp using JS -->
+    <p>Status: <span id="status" class="ok">SERVING 001</span></p>
+    <p>Server time: <code id="time">loading…</code></p>
+
+    <p>To test from the server, run: <code>curl -I http://localhost/</code> or <code>curl -I http://ntcharcoalsupply.com/</code></p>
+
+    <footer>
+      <!-- English comment: small troubleshooting hints -->
+      If you see this page, nginx is serving static files correctly.
+    </footer>
+  </div>
+
+  <script>
+    // English comment: display client time and update every second
+    function pad(n){return n<10?'0'+n:n;}
+    function updateTime(){
+      const d = new Date();
+      const s = d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate())
+              + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+      document.getElementById('time').textContent = s;
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+  </script>
+</body>
+</html>
